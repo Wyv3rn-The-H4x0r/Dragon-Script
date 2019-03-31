@@ -1,5 +1,5 @@
 # Dragon-Script
-## A Little Bash script to Automize ma Tools with my own CTF Scan Parametters
+## A Little Bash script to Automize ma Tools with my own CTF Scan Parameters
 
 ## Version : 3.4.1
 
