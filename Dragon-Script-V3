@@ -1,0 +1,425 @@
+#!/bin/bash
+
+# Scan Script
+# Dev : Wyv3rn
+# version 3.4.1
+# 2019
+# I Recommed to start this script as Root!
+
+# this script need chmod +x for write files (for scan save)
+# after that start with ./Scan
+# Happy Hunting ^-..-^
+
+# Welcome
+clear
+
+while :
+do
+echo " ***************************** "
+echo " *      Dragon - Script      * "
+echo " *       Version 3.4.1       * "
+echo " *         by Wyv3rn         * "
+echo " *           2019            * "
+echo " ***************************** "
+echo "  ^-..-^ Happy Hunting ^-..-^  "
+echo ""
+echo "Select Category : "
+echo ""
+echo "1)  Port_Scanners       2) Other_Attack_Tool  "
+echo "3)  Hidding_Tools       4) Brute_Force_Attacks"
+echo ""
+echo "98) Full_Uprade_System"
+echo "99) Exit"
+echo ""
+# read cat-choice
+echo "Input : "
+read Cat_num
+
+# execute choice :
+if (($Cat_num == 1)); then
+# the Choices
+	echo ""
+        echo "Port Scanners :"
+        echo " 1) nmap        2)  nikto  "
+        echo " 3) Wafw00f     4)  dmitry "
+        echo " 5) netdiscover 6)  Zenmap "
+	echo " 0) back        99) Exit   "
+	echo ""
+# get number
+	echo "Input :"
+        read Number
+
+# Execute :
+ 	if (($Number == 1)); then
+		echo ""
+           	echo "NMAP choosen"
+		echo ""
+                echo "enter IP or Hostname!"
+                echo "Remeber for DNS-Lookup put /24 at end and"
+                echo "enter the Gateway!"
+		echo ""
+                read IP
+		echo ""
+                echo "You entered " $IP
+		echo ""
+                echo "I am a smart Noodle-Dragon and will save the scan for you"
+                echo "So enter the filename please with .xml as fileend"
+                echo ""
+		read filename
+		echo ""
+		echo "enter interface:"
+		read Interface
+		echo ""
+                echo "choose Intensity of the Scan : "
+		echo "0) TCP-SYN-Scan (stealhy)  1) UDP-Scan (Loud)"
+		echo "2) OS-Detect               3) Multiscan (loud)"
+		echo "4) IDS-Evade TCP-SYN-Scan (Stealhy)"
+		echo "5) Version Detection with Full TCP-Connect-Scan Handshake"
+                echo "6) DNS-Lookup"
+		echo ""
+                read Intensity_Level
+		if (($Intensity_Level == 0)); then
+                                echo ""
+				echo "Stealth Mode"
+                                echo "Pschhtt...be quiet...i will scan"
+				echo "and it will needs time...Alot of time..."
+                                echo "press ctrl + c to Abort"
+                                echo "press any key to start"
+                                read L
+                                xterm -hold -e nmap -sS -sV -T0 -vv $IP -oN $filename -e $Interface
+	                        echo ""
+  		                echo "Scan Complete..press any key to continue"
+                        	read L
+				clear
+
+		elif (($Intensity_Level == 1)); then
+                                echo ""
+                                echo "press any key to start"
+                                read L
+				xterm -hold -e nmap -sU -sV -v $IP -oN $filename -e $Interface
+				echo "Scan Complete..press any key to continue"
+				read L
+				clear
+
+   		elif (($Intensity_Level == 2)); then
+                                echo ""
+                                echo "press any key to start"
+                                read L
+				xterm -hold -e nmap -O -vv $IP -oN $filename -e $Interface
+				echo "Scan Complete..press any key to continue"
+                                read L
+                                clear
+
+                elif (($Intensity_Level == 3)); then
+                                echo ""
+                                echo "press any key to start"
+                                read L
+				xterm -hold -e nmap -A -vv $IP -oN $filename -e $Interface
+				echo "Scan Complete..press any key to continue"
+                                read L
+                                clear
+
+                elif (($Intensity_Level == 4)); then
+                                echo ""
+                                echo "press any key to start"
+                                read L
+				xterm -hold -e nmap -sS -f -vv $IP -oN $filename -e $Interface
+				echo "Scan Complete..press any key to continue"
+                                read L
+                                clear
+
+		elif (($Intensity_Level == 5)); then
+                                echo ""
+                                echo "press any key to start"
+                                read L
+				xterm -hold -e nmap -sT -sV -T1 -vv $IP -oN $filename -e $Interface
+				echo "Scan Complete..press any key to continue"
+                                read L
+                                clear
+
+                elif (($Intensity_Level == 6)); then
+				echo ""
+                                echo "DNS-Lookup Mode"
+                                echo "I Will Do a Lookup with ma Ninja Style"
+				echo "press any key to start"
+                                read L
+                                xterm -hold -e nmap -sP -vv $IP -oN $filename -e $Interface 
+				echo "Scan Complete..press any key to continue"
+                                read L
+                                clear
+
+                elif (($Nmap_Select == "Q")); then
+                                echo "Aborting D:"
+				clear
+		fi
+
+# Nikto
+        elif (($Number == 2)); then
+		echo ""
+                echo "nikto Choosen"
+		echo ""
+                echo "Enter IP/hostname :"
+		echo ""
+                read IP
+                echo "press any key to start"
+		echo ""
+                read L
+		echo ""
+                xterm -hold -e nikto -host $IP
+                echo ""
+                echo "Scan Complete..press any key to continue"
+                read L
+		clear
+
+# wafw00f
+ 	elif (($Number == 3)); then
+		echo ""
+                echo "W00f W00f ^-..-^"
+                echo "You choose Wafw00f"
+		echo ""
+                echo "Enter IP/hostname :"
+		echo ""
+                read IP
+                echo "press any key to start"
+                read L
+                xterm -hold -e wafw00f -v $IP
+		echo ""
+		echo "Scan Complete..press any key to continue"
+		read L
+		clear
+
+# Dmitry
+ 	elif (($Number == 4)); then
+		echo ""
+                echo "You choose Dmitry"
+                echo "Let scan it on Russian Style"
+		echo ""
+                echo "Enter IP/hostname :"
+		echo ""
+                read IP
+                echo "Enter name for file (scan will be saved as txt (enter without fileending)"
+		echo ""
+                read File
+		echo ""
+                echo "Select Scan Type (1 whois Lookup |  $or subdomains | 3 search for mail adesses)"
+                echo "4 Multi Scan (All in One)"
+                echo ""
+		read level
+		echo ""
+                if (($level == 1)); then
+                                echo "You Select Whois Lookup"
+                                echo "press any key to start"
+                                read L
+                                xterm -hold -e dmitry -i $IP -o $File
+	                        echo ""
+        	                echo "Scan Complete..press any key to continue"
+                	        read L
+				clear
+
+                elif (($level == 2)); then
+                                echo "press any key to start"
+                                read L
+                                xterm -hold -e dmitry -w $IP -o $File
+	                        echo ""
+        	                echo "Scan Complete..press any key to continue"
+                	        read L
+				clear
+
+                 elif (($level == 3)); then
+                                echo "press any key to start"
+                                read L
+                                xterm -hold -e dmitry -e $IP -o $File
+	                        echo ""
+        	                echo "Scan Complete..press any key to continue"
+                	        read L
+				clear
+
+		elif (($level == 4)); then
+                                echo "Attention this CAN be loud!"
+                                echo "press any key to start"
+                                read L
+                                xterm -hold -e dmitry -p -f -s -e -n -w -i $IP -o $File
+	                        echo ""
+        	                echo "Scan Complete..press any key to continue"
+                	        read L
+				clear
+          	fi
+
+# netdiscover
+	elif (($Number == 5)); then
+		echo ""
+                echo "You choose netdiscover"
+		echo ""
+                echo "Enter Interface"
+		echo ""
+                read Interface
+		echo ""
+                echo "enter 1 - Aktive Mode or 2 - Passiv Mode (no sending Data)"
+                echo "3 - Hardcore passiv scan"
+                read ModeScan
+                if (($ModeScan == 1)); then
+                                echo "press any key to start"
+                                read L
+                                xterm -hold -e netdiscover -i $Interface -f
+	                        echo ""
+        	                echo "Scan Complete..press any key to continue"
+                	        read L
+				clear
+
+                 elif (($ModeScan == 2)); then
+                                echo "press any key to start"
+                                read L
+                                xterm -hold -e netdiscover -i $Interface -p
+	                        echo ""
+        	                echo "Scan Complete..press any key to continue"
+                	        read L
+				clear
+
+                 elif (($ModeScan == 3)); then
+                                echo "press any key to start"
+                                read L
+                                xterm -hold -e netdiscover -i $Interface -p -S
+	                        echo ""
+        	                echo "Scan Complete..press any key to continue"
+                	        read L
+				clear
+		elif(($Number == 6)); then
+			xterm -e zenmap
+               	fi
+# Beenden
+	elif (($Number == 99)); then
+		echo "Exiting..."
+		sleep 0.5
+		break
+# back
+	elif (($Number == 0)); then
+	    	clear
+	fi
+# ######################################
+# Second Category ::
+elif (($Cat_num == 2)); then
+	echo ""
+	echo "##################"
+	echo "Wired Attack Tools"
+	echo "##################"
+	echo ""
+	echo "1) Metasploit-Console  2)  Burpsuite "
+	echo "3) Searchsploit			  "
+	echo "0) Back                99) Exit"
+	echo ""
+	echo "Input :"
+	read Number
+	if (($Number == 1)); then
+		xterm -e msfdb init && msfconsole
+		clear
+
+	elif (($Number == 2)); then
+		xterm -e burpsuite
+		clear
+
+	elif (($Number == 3)); then
+		echo "Enter Exploit to Search: "
+		read exploitname
+		xterm -hold -e searchsploit $exploitname
+		clear
+
+        elif(($Number == 99)); then
+                echo "Exiting..."
+                sleep 0.5
+                break
+
+	elif (($Number == 0)); then
+		clear
+	fi
+# Hiding
+elif(($Cat_num == 3)); then
+	echo ""
+        echo "##################"
+	echo "   Hidding Tools   "
+        echo "##################"
+	echo ""
+	echo "1) macchanger CHANGE "
+	echo "2) macchanger RESET  "
+	echo "0) Back       	   99) Exit             "
+	echo ""
+	echo "Input : "
+	read Number
+ 	if (($Number == 1)); then
+		echo ""
+		echo "Enter Interface : "
+                read Interface
+                xterm -e macchanger -p $Interface
+                echo "MAC is Restored"
+		echo "Hit Enter to go on.."
+		read L
+		clear
+
+	elif(($Number == 2)); then
+		echo ""
+		echo "Enter Interface : "
+		read Interface
+		xterm -e macchanger -r $Interface
+		echo "MAC is changed"
+		echo "Hit Enter to go on.."
+		read L
+		clear
+
+        elif(($Number == 99)); then
+                echo "Exiting..."
+                sleep 0.5
+                break
+
+	elif (($Number == 0)); then
+		clear
+	fi
+
+# Brute Force
+elif(($Cat_num == 4)); then
+	echo ""
+        echo "##################"
+	echo " Brute Force      "
+        echo "##################"
+	echo ""
+	echo "1) Hydra    2) SQLmap"
+	echo "0) Back     99) Exit"
+	echo ""
+	echo "Input :"
+	read Number
+	echo ""
+	if (($Number == 1)); then
+		xterm -hold -e hydra-wizzard
+		clear
+
+	elif(($Number == 2)); then
+		xterm -e sqlmap -wizard
+		clear
+	elif(($Number == 99)); then
+                echo "Exiting..."
+                sleep 0.5
+                break
+
+	elif(($Number == 0)); then
+		clear
+	fi
+
+elif (($Cat_num == 98)); then
+	echo "you must run this script as Root to do This ^-..-^"
+	echo "so be sure you statet as Root"
+	echo "press any key to Continue"
+	read L
+	xterm -e apt update
+	xterm -e apt full-upgrade -y
+	echo ""; echo ""; echo ""
+	echo "<(^-^)> System Upgrade Finished <(^-^)>"
+	echo ""
+	echo "press any key to Continue.."
+	read L
+	clear
+# Exit
+elif (($Cat_num == 99)); then
+                echo "Exiting..."
+                sleep 0.5
+                break
+fi
+# exit Loop
+done
