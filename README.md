@@ -13,6 +13,6 @@ chmod +x Dragon-Script-V3
 ```
 4) Run the Script with  
 ```
-./ 	Dragon-Script-V3 
+./Dragon-Script-V3 
 ```
 5) Happy Hunting
